@@ -1,0 +1,825 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  color: var(--diet-text);
+  background-color: var(--diet-gray);
+  margin: 0;
+  padding: 0;
+}
+
+/* Chat Sayfası Stilleri */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 160px);
+  padding: 1rem;
+}
+
+.chat-bubble {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+  position: relative;
+  word-break: break-word;
+}
+
+.user-bubble {
+  background-color: #e3f2fd;
+  color: #333;
+  border-bottom-right-radius: 4px;
+  margin-left: auto;
+}
+
+.assistant-bubble {
+  background-color: #e8f5e9;
+  color: #333;
+  border-bottom-left-radius: 4px;
+}
+
+/* Sağlık bilgisi içeren mesajlar için özel stil */
+.medical-info {
+  background-color: #FFEBEE;
+  border-left: 4px solid #F44336;
+}
+
+.medical-info strong {
+  color: #F44336;
+}
+
+.medical-info::before {
+  content: "⚕️";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #F44336;
+  font-size: 14px;
+}
+
+/* Yükleniyor animasyonu için stil */
+.loading-container {
+  animation: fadeIn 0.3s ease;
+}
+
+.loader-container {
+  display: flex;
+  align-items: center;
+}
+
+.food-icons {
+  position: relative;
+  width: 60px;
+  height: 24px;
+}
+
+.food-icons .icon {
+  position: absolute;
+  animation: bounce 1s infinite;
+}
+
+.food-icons .apple {
+  left: 0;
+  animation-delay: 0s;
+}
+
+.food-icons .broccoli {
+  left: 20px;
+  animation-delay: 0.2s;
+}
+
+.food-icons .avocado {
+  left: 40px;
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Giriş Sayfası Animasyonları */
+.food-animation-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-food {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.8;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  transition: transform 0.3s;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.floating-food:hover {
+  transform: scale(1.5) rotate(15deg);
+  opacity: 1;
+}
+
+.floating-food.apple {
+  animation-name: float-1;
+}
+
+.floating-food.banana {
+  animation-name: float-2;
+}
+
+.floating-food.broccoli {
+  animation-name: float-3;
+}
+
+.floating-food.avocado {
+  animation-name: float-4;
+}
+
+.floating-food.orange {
+  animation-name: float-5;
+}
+
+.floating-food.tomato {
+  animation-name: float-6;
+}
+
+.floating-food.carrot {
+  animation-name: float-7;
+}
+
+.floating-food.pear {
+  animation-name: float-8;
+}
+
+@keyframes float-1 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(50px, 30px) rotate(5deg); }
+  50% { transform: translate(20px, 60px) rotate(-5deg); }
+  75% { transform: translate(-30px, 30px) rotate(3deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes float-2 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-40px, 40px) rotate(-8deg); }
+  50% { transform: translate(-10px, 80px) rotate(8deg); }
+  75% { transform: translate(40px, 40px) rotate(-4deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes float-3 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(30px, -40px) rotate(10deg); }
+  50% { transform: translate(60px, -20px) rotate(-10deg); }
+  75% { transform: translate(30px, -60px) rotate(5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes float-4 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-50px, -50px) rotate(-5deg); }
+  50% { transform: translate(-70px, -20px) rotate(5deg); }
+  75% { transform: translate(-30px, -70px) rotate(-3deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes float-5 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(40px, -20px) rotate(15deg); }
+  50% { transform: translate(20px, -40px) rotate(-15deg); }
+  75% { transform: translate(-20px, -20px) rotate(10deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes float-6 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-30px, 10px) rotate(-12deg); }
+  50% { transform: translate(-50px, 30px) rotate(12deg); }
+  75% { transform: translate(-10px, 50px) rotate(-8deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes float-7 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(20px, -30px) rotate(20deg); }
+  50% { transform: translate(40px, 0) rotate(-20deg); }
+  75% { transform: translate(20px, 30px) rotate(15deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes float-8 {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-40px, 0) rotate(-8deg); }
+  50% { transform: translate(-20px, -40px) rotate(8deg); }
+  75% { transform: translate(0, -20px) rotate(-4deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Titreşen butonlar */
+.pulsing-button {
+  animation: button-pulse 2s infinite;
+  transition: all 0.3s;
+}
+
+.pulsing-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes button-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(76, 175, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+/* Giriş sayfası konteyner animasyonu */
+.auth-container {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.message-input {
+  display: flex;
+  padding: 1rem;
+  background-color: white;
+  border-top: 1px solid #e2e8f0;
+}
+
+.send-button {
+  @apply bg-diet-green text-white p-2 rounded-lg hover:bg-green-600 transition-colors;
+}
+
+.upload-container {
+  @apply border-2 border-dashed border-diet-blue rounded-lg p-6 text-center cursor-pointer hover:bg-blue-50 transition-colors;
+}
+
+.auth-form {
+  @apply bg-white p-8 rounded-lg shadow-md max-w-md mx-auto;
+}
+
+.auth-input {
+  @apply w-full p-2 border border-gray-300 rounded-md focus:border-diet-green focus:ring-1 focus:ring-diet-green outline-none;
+}
+
+.auth-button {
+  @apply w-full bg-diet-green text-white p-3 rounded-lg hover:bg-green-600 transition-colors;
+}
+
+.profile-card {
+  @apply bg-white p-6 rounded-lg shadow-md mb-6;
+}
+
+.complete-button {
+  @apply w-6 h-6 rounded-full border-2 border-gray-300 flex items-center justify-center transition-colors duration-300 cursor-pointer;
+}
+
+.complete-button.completed {
+  @apply bg-diet-blue border-diet-blue text-white;
+}
+
+.tab-button {
+  @apply px-4 py-2 font-medium;
+}
+
+.tab-button.active {
+  @apply text-diet-green border-b-2 border-diet-green;
+}
+
+.exercise-card {
+  @apply bg-white p-4 rounded-lg shadow-sm mb-3 flex justify-between items-center;
+}
+
+.diet-card {
+  @apply bg-white p-4 rounded-lg shadow-sm mb-3;
+}
+
+.header {
+  @apply bg-white shadow-md p-4 sticky top-0 z-10;
+}
+
+.logo {
+  @apply text-diet-green font-bold text-2xl flex items-center;
+}
+
+.logo-icon {
+  @apply text-diet-orange ml-2;
+}
+
+/* Yeni chat arayüzü için stiller */
+.chat-sidebar {
+  width: 300px;
+  background: white;
+  border-right: 1px solid #e5e5e5;
+  transition: transform 0.3s ease;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-sidebar.closed {
+  transform: translateX(-100%);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.chat-sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-toggle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #e5e5e5;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+  background: white;
+}
+
+.chat-messages {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-message {
+  display: flex;
+  margin-bottom: 16px;
+  animation: fadeIn 0.3s ease;
+}
+
+.user-message {
+  flex-direction: row-reverse;
+}
+
+.user-message .avatar-container {
+  margin-right: 0;
+  margin-left: 12px;
+}
+
+.avatar-container {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin-right: 12px;
+}
+
+.user-avatar, .assistant-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.user-avatar {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.assistant-avatar {
+  background-color: #e8f5e9;
+  color: var(--diet-green);
+}
+
+.diyet-dostu-avatar {
+  width: 48px;
+  height: 48px;
+  margin-right: 12px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Chat buton stilleri */
+.new-chat-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.new-chat-btn:hover {
+  background-color: #43a047;
+}
+
+/* Mobil uyumluluk için responsive stillemeler */
+@media (max-width: 768px) {
+  .chat-sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .diet-plan-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Diyet Dostu özel değişkenleri */
+:root {
+  --diet-green: #4CAF50;
+  --diet-green-dark: #388E3C;
+  --diet-green-light: #C8E6C9;
+  --diet-blue: #2196F3;
+  --diet-gray: #f5f5f5;
+  --diet-text: #333333;
+}
+
+/* Kişisel Bilgi Formu Stilleri */
+.user-info-form {
+  animation: fadeInUp 0.5s ease;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-title {
+  color: var(--diet-green);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-section {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.375rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: var(--diet-green);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+  outline: none;
+}
+
+.form-input.error {
+  border-color: #e53e3e;
+}
+
+.form-error {
+  color: #e53e3e;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.form-button {
+  background-color: var(--diet-green);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-button:hover {
+  background-color: var(--diet-green-dark);
+}
+
+.form-button.secondary {
+  background-color: #e2e8f0;
+  color: #4a5568;
+}
+
+.form-button.secondary:hover {
+  background-color: #cbd5e0;
+}
+
+/* Diyet Planı Stilleri */
+.diet-plan-container {
+  animation: fadeInUp 0.5s ease;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.diet-plan-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.diet-plan-title {
+  color: var(--diet-green);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.diet-plan-subtitle {
+  color: #718096;
+  font-size: 1rem;
+}
+
+.diet-plan-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.stat-title {
+  font-size: 0.875rem;
+  color: #718096;
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--diet-text);
+}
+
+.stat-detail {
+  font-size: 0.75rem;
+  color: #a0aec0;
+  margin-top: 0.25rem;
+}
+
+.meal-plan-section {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-weight: 600;
+  color: var(--diet-green);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--diet-green-light);
+}
+
+.meal-card {
+  background: var(--diet-gray);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.meal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.meal-title {
+  font-weight: 600;
+  color: var(--diet-text);
+}
+
+.meal-calories {
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+.meal-description {
+  color: #4a5568;
+  line-height: 1.5;
+}
+
+.nutrition-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.nutrition-item {
+  text-align: center;
+}
+
+.nutrition-label {
+  font-size: 0.75rem;
+  color: #718096;
+  margin-bottom: 0.25rem;
+}
+
+.nutrition-value {
+  font-weight: 600;
+  color: var(--diet-text);
+}
+
+.tab-container {
+  display: flex;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 1.5rem;
+}
+
+.tab {
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  color: #718096;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+  color: var(--diet-green);
+  border-bottom-color: var(--diet-green);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.tips-section {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tips-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.tips-list li {
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+}
+
+.warning-container {
+  background: #FFFDE7;
+  border-left: 4px solid #FBC02D;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+}
+
+.warning-title {
+  font-weight: 600;
+  color: #F57F17;
+  margin-bottom: 0.5rem;
+}
+
+.warning-message {
+  color: #4a5568;
+  line-height: 1.5;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Not silme düğmesi stilleri */
+.note-container {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.delete-note-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 24px;
+  height: 24px;
+  background-color: rgba(244, 67, 54, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.note-container:hover .delete-note-btn {
+  opacity: 1;
+}
+
+.delete-note-btn:hover {
+  background-color: rgba(244, 67, 54, 0.2);
+}
+
+.delete-note-btn svg {
+  width: 16px;
+  height: 16px;
+  color: #f44336;
+} 
